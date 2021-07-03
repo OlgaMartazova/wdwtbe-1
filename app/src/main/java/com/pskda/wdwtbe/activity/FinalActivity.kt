@@ -1,4 +1,4 @@
-package com.pskda.wdwtbe
+package com.pskda.wdwtbe.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
