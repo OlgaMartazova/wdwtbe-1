@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Кто не хочет стать отчисленным</string>
-    <string name="title_activity_main_menu">MainMenuActivity</string>
+    <string name="title_activity_main_menu">Кнхсо</string>
+    <string name="final_score_string">Ты набрал: %d</string>
 </resources>
