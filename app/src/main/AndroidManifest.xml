@@ -21,12 +21,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.PrepareActivity">
+            android:screenOrientation="landscape"
         </activity>
 
         <activity android:name=".activity.PlayActivity">
+            android:screenOrientation="landscape"
         </activity>
 
         <activity android:name=".activity.FinalActivity">
+            android:screenOrientation="landscape"
         </activity>
     </application>
 
