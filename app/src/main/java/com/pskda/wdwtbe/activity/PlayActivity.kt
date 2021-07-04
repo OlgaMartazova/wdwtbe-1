@@ -2,6 +2,8 @@ package com.pskda.wdwtbe.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.view.View.GONE
@@ -128,9 +130,11 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
                 v!!.setBackgroundColor(resources.getColor(R.color.colorBad))
                 buttonsOfAnswer[rightBtnIndex]!!.setBackgroundColor(resources.getColor(R.color.colorGood))
                 if(curQuestionExtra){
-                    val intent = Intent(this, FinalActivity::class.java)
-                    intent.putExtra("Score",0)
-                    startActivity(intent)
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        val intent = Intent(this, FinalActivity::class.java)
+                        intent.putExtra("Score",0)
+                        startActivity(intent)
+                    }, 3000)
                 }else{
                     nextQuestion()
                 }
@@ -139,16 +143,18 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun nextQuestion() {
-        if (curDifficultyIndex < 1) {  // В этом if'e мы идем пока у нас есть вопросы (цифра это (кол-во вопросов - 1)), если вопросы закончились,
-            // переключаемся на конечный экран с баллами
-            curDifficultyIndex += 1
-            indicesOfAnswer = arrayOf(-1, -1, -1, -1)
-            setQuestion(diff[curDifficultyIndex])
-        } else {
-            val intent = Intent(this, FinalActivity::class.java)
-            intent.putExtra("Score",scoreCnt)
-            startActivity(intent)
-        }
+        Handler(Looper.getMainLooper()).postDelayed({
+            if (curDifficultyIndex < 1) {  // В этом if'e мы идем пока у нас есть вопросы (цифра это (кол-во вопросов - 1)), если вопросы закончились,
+                // переключаемся на конечный экран с баллами
+                curDifficultyIndex += 1
+                indicesOfAnswer = arrayOf(-1, -1, -1, -1)
+                setQuestion(diff[curDifficultyIndex])
+            } else {
+                val intent = Intent(this, FinalActivity::class.java)
+                intent.putExtra("Score",scoreCnt)
+                startActivity(intent)
+            }
+        }, 3000)
     }
 
     private fun findView() {
