@@ -99,7 +99,7 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
         //TODO QuestionRepository
 
         var question: Question? = questions[item]?.get(Random().nextInt(3))
-        val type: Boolean? = question?.isExtra
+        var type: Boolean? = question?.isExtra
 
         if (item == 1) {
             while (type == true) {
@@ -110,6 +110,9 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
         if (isHelpUsed[3]) {
             while (type == false) {
                 question = questions[item]?.get(Random().nextInt(3))
+                if (question != null) {
+                    type = question.isExtra
+                }
             }
         }
 
