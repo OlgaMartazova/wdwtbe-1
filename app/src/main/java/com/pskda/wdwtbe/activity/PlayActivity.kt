@@ -54,19 +54,6 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
 
     private var helpCount : Int = 0
 
-    val questions = hashMapOf(
-        1 to listOf(
-            Question("name1", false, arrayOf("ans1", "ans2", "ans3", "ans4"), 0),
-            Question("name2", false, arrayOf("ans1", "ans2", "ans3", "ans4"), 1),
-            Question("name3", false, arrayOf("ans1", "ans2", "ans3", "ans4"), 1)
-        ),
-        2 to listOf(
-            Question("name4", true, arrayOf("ans1", "ans2", "ans3", "ans4"), 2),
-            Question("name5", false, arrayOf("ans1", "ans2", "ans3", "ans4"), 3),
-            Question("name6", false, arrayOf("ans1", "ans2", "ans3", "ans4"), 3)
-        )
-    )
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -96,20 +83,19 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
             btn?.isClickable = true
             btn?.setBackgroundColor(0)
         } //кнопки становятся кликабельными, цвета обнуляются
-        //TODO QuestionRepository
 
-        var question: Question? = questions[item]?.get(Random().nextInt(3))
+        var question: Question? = QuestionRepository.questions[item]?.get(Random().nextInt(3))
         var type: Boolean? = question?.isExtra
 
         if (item == 1) {
             while (type == true) {
-                question = questions[item]?.get(Random().nextInt(3))
+                question = QuestionRepository.questions[item]?.get(Random().nextInt(3))
             }
         }
         // Арсик использован - теперь все вопросы ДОП
         if (isHelpUsed[3]) {
             while (type == false) {
-                question = questions[item]?.get(Random().nextInt(3))
+                question = QuestionRepository.questions[item]?.get(Random().nextInt(3))
                 if (question != null) {
                     type = question.isExtra
                 }
@@ -295,7 +281,7 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun helpCheating() {
         val randomDiff : Int = diff[Random().nextInt(diff.size)]
-        val randomQuestion : Question? = questions[randomDiff]?.get(Random().nextInt(3))
+        val randomQuestion : Question? = QuestionRepository.questions[randomDiff]?.get(Random().nextInt(3))
         val rightAnswer : String? = randomQuestion?.answers?.get(randomQuestion.indexOfRightAnswer)
         if (rightAnswer != null) {
             showMessage(rightAnswer)
@@ -349,7 +335,6 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
 
 
     }
-
 
 
     // Готовая функция для диалога, можно использовать,
