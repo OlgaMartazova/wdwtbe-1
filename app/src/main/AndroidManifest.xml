@@ -22,17 +22,20 @@
         </activity>
         <activity
             android:name=".activity.PrepareActivity"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar">>
         </activity>
 
         <activity
             android:name=".activity.PlayActivity"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar">>
         </activity>
 
         <activity
             android:name=".activity.FinalActivity"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar">>
         </activity>
     </application>
 
