@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainMenuActivity"
+            android:name=".activity.MainMenuActivity"
             android:label="@string/title_activity_main_menu"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar">
@@ -19,6 +19,23 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.PrepareActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar">>
+        </activity>
+
+        <activity
+            android:name=".activity.PlayActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar">>
+        </activity>
+
+        <activity
+            android:name=".activity.FinalActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar">>
         </activity>
     </application>
 
