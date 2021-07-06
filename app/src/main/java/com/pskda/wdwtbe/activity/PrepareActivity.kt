@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.appcompat.app.AlertDialog
@@ -139,5 +140,33 @@ class PrepareActivity : AppCompatActivity(), View.OnClickListener  {
                 dialog.dismiss()
             }
             .show()
+    }
+
+    fun toggleFullScreen() {
+        if (window.decorView.systemUiVisibility == View.SYSTEM_UI_FLAG_VISIBLE) {
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
+            window.decorView.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or View.SYSTEM_UI_FLAG_FULLSCREEN
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        toggleFullScreen()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        this.finish()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        val intent = Intent(this, MainMenuActivity::class.java)
+        startActivity(intent)
+        this.finish()
     }
 }
