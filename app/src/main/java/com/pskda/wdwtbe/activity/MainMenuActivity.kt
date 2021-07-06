@@ -20,7 +20,7 @@ class MainMenuActivity : AppCompatActivity() {
         btnPlay = findViewById(R.id.btn_play)
 
         btnPlay?.setOnClickListener {
-            val intent = Intent (this, PlayActivity::class.java)
+            val intent = Intent (this, PrepareActivity::class.java)
             startActivity(intent)
         }
     }
