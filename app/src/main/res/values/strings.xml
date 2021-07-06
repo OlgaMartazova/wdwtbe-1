@@ -3,4 +3,23 @@
     <string name="title_activity_main_menu">Кнхсо</string>
     <string name="final_score_string">Ты набрал: %d</string>
     <string name="extra_string">Тебе задали ДОП вопрос! Не ответишь - не сдал!</string>
+    <string name="play">Играть</string>
+    <string name="result">Ты получил %s</string>
+    <string name="add">Какой-то текст про Арсика</string>
+    <string name="question">Тут вопрос</string>
+
+    <string name="ans1">ответ 1</string>
+    <string name="ans2">ответ 2</string>
+    <string name="ans3">ответ 3</string>
+    <string name="ans4">ответ 4</string>
+
+    <string name="_50_50">50/50</string>
+    <string name="note">шпаргалка</string>
+    <string name="help_class">помощь группаша</string>
+    <string name="help_Ars">помощь Арсика</string>
+    
+    <string name="type">Тип вопроса</string>
+    <string name="score">баллы %</string>
+
+
 </resources>
