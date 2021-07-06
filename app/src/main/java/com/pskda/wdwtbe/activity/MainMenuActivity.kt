@@ -3,6 +3,7 @@ package com.pskda.wdwtbe.activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import android.view.WindowManager
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import com.pskda.wdwtbe.R
 class MainMenuActivity : AppCompatActivity() {
 
     private var btnPlay : Button? = null
+    private var tvNameApp : TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +20,9 @@ class MainMenuActivity : AppCompatActivity() {
         toggleFullScreen()
 
         btnPlay = findViewById(R.id.btn_play)
+        tvNameApp = findViewById(R.id.tv_name_app)
+
+        tvNameApp?.text = "Кто не хочет" + "\n" + "стать" + "\n" + "отчисленным"
 
         btnPlay?.setOnClickListener {
             val intent = Intent (this, PlayActivity::class.java)
