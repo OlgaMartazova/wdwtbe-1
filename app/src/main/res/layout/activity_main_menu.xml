@@ -7,14 +7,56 @@
     android:orientation="vertical"
     tools:context=".activity.MainMenuActivity">
 
-    <Button
-        android:id="@+id/btn_play"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="PLAY"
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="451dp"
+        android:layout_height="267dp"
+        android:layout_marginTop="50dp"
+
+        android:src="@drawable/Picture1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"></ImageView>
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+
+        android:fontFamily="@font/just_breathe_regular"
+        android:text="@string/app_name"
+        android:textColor="@color/black"
+        android:textSize="40dp"
+
+        app:layout_constraintBottom_toTopOf="@+id/btn_play"
+        app:layout_constraintEnd_toStartOf="@+id/image"
+
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.509"></TextView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_play"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+
+        android:background="@drawable/button_picture"
+        android:text="@string/play"
+        android:textSize="30sp"
+        android:textColor="@android:color/black"
+        android:shadowColor="@color/black"
+        android:fontFamily="@font/just_breathe_regular"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.85">
+    </com.google.android.material.button.MaterialButton>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

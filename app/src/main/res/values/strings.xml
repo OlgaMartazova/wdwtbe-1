@@ -3,4 +3,5 @@
     <string name="title_activity_main_menu">Кнхсо</string>
     <string name="final_score_string">Ты набрал: %d</string>
     <string name="extra_string">Тебе задали ДОП вопрос! Не ответишь - не сдал!</string>
+    <string name="play">Играть</string>
 </resources>
