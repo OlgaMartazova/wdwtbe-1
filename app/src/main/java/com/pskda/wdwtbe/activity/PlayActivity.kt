@@ -7,6 +7,7 @@ import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.view.View.*
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
@@ -59,6 +60,7 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
 
         setContentView(R.layout.activity_play)
         findView()
+        toggleFullScreen()
 
         btnAns1!!.setOnClickListener(this)
         btnAns2!!.setOnClickListener(this)
@@ -336,6 +338,15 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
+    fun toggleFullScreen() {
+        if (window.decorView.systemUiVisibility == View.SYSTEM_UI_FLAG_VISIBLE) {
+            window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or View.SYSTEM_UI_FLAG_FULLSCREEN
+        } else {
+            window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
+        }
+    }
 
     // Готовая функция для диалога, можно использовать,
     // потом ее вызвать в setClickListener() {showDialog()}
