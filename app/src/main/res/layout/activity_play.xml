@@ -154,7 +154,7 @@
         android:fontFamily="@font/just_breathe_regular"
         android:textColor="@color/black"
 
-        app:backgroundTint="@colot"
+        app:backgroundTint="@android:color/transparent"
         app:rippleColor="#33AAAAAA"
         app:strokeColor="@color/black"
         app:strokeWidth="2dp"
