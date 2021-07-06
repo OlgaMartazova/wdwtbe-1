@@ -181,7 +181,7 @@
         android:id="@+id/btn_help2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/note"
+        android:text="@string/cheat_note"
         android:textSize="15sp"
         android:fontFamily="@font/just_breathe_regular"
         android:textColor="@color/black"
@@ -207,7 +207,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="350dp"
         android:fontFamily="@font/just_breathe_regular"
-        android:text="@string/help_class"
+        android:text="@string/groupmate_help"
 
         android:textColor="@color/black"
         android:textSize="15sp"
@@ -227,7 +227,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/just_breathe_regular"
-        android:text="@string/help_Ars"
+        android:text="@string/ars_help"
 
         android:textColor="@color/black"
         android:textSize="15sp"

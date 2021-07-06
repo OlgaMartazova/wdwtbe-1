@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_rules_graph"
+    app:startDestination="@id/rulesButtonFragment">
+
+    <fragment
+        android:id="@+id/rulesButtonFragment"
+        android:name="com.pskda.wdwtbe.fragment.RulesButtonFragment"
+        android:label="RulesButtonFragment"
+        tools:layout="@layout/fragment_rules_button">
+        <action
+            android:id="@+id/action_rulesButtonFragment_to_rulesTextViewFragment"
+            app:destination="@id/rulesTextViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rulesTextViewFragment"
+        android:name="com.pskda.wdwtbe.fragment.RulesTextViewFragment"
+        android:label="RulesTextViewFragment"
+        tools:layout="@layout/fragment_rules_textview"/>
+</navigation>

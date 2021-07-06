@@ -6,106 +6,49 @@
     android:layout_height="match_parent"
     tools:context=".activity.PrepareActivity">
 
-
-    <Button
-        android:id="@+id/btn_rules"
+    <ImageButton
+        android:id="@+id/img_btn_fifty_fifty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/rules"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_fifty_fifty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/_50_50"
-        app:layout_constraintEnd_toStartOf="@+id/tv_cheat_sheet"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_baseline_help_24"
+        app:layout_constraintEnd_toStartOf="@+id/img_btn_cheat_notes"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_cheat_sheet"
+    <ImageButton
+        android:id="@+id/img_btn_cheat_notes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/note"
-        app:layout_constraintEnd_toStartOf="@+id/tv_groupmate_help"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_baseline_help_24"
+        app:layout_constraintEnd_toStartOf="@+id/img_btn_groupmate_help"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tv_fifty_fifty"
+        app:layout_constraintStart_toEndOf="@+id/img_btn_fifty_fifty"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_groupmate_help"
+    <ImageButton
+        android:id="@+id/img_btn_groupmate_help"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/help_class"
-        app:layout_constraintEnd_toStartOf="@+id/tv_arsiks_help"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_baseline_help_24"
+        app:layout_constraintEnd_toStartOf="@+id/img_btn_arsiks_help"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tv_cheat_sheet"
+        app:layout_constraintStart_toEndOf="@+id/img_btn_cheat_notes"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_arsiks_help"
+    <ImageButton
+        android:id="@+id/img_btn_arsiks_help"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/help_Ars"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_baseline_help_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tv_groupmate_help"
+        app:layout_constraintStart_toEndOf="@+id/img_btn_groupmate_help"
         app:layout_constraintTop_toTopOf="parent" />
-
-
-    <TextView
-        android:id="@+id/tv_fifty_fifty_descr"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/_50_50_descr"
-        app:layout_constraintEnd_toStartOf="@+id/tv_cheat_sheet_descr"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tv_fifty_fifty" />
-
-    <TextView
-        android:id="@+id/tv_cheat_sheet_descr"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/note_descr"
-        app:layout_constraintEnd_toStartOf="@+id/tv_groupmate_help_descr"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tv_fifty_fifty_descr"
-        app:layout_constraintTop_toTopOf="@id/tv_cheat_sheet" />
-
-    <TextView
-        android:id="@+id/tv_groupmate_help_descr"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/help_class_descr"
-        app:layout_constraintEnd_toStartOf="@+id/tv_arsiks_help_descr"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tv_cheat_sheet_descr"
-        app:layout_constraintTop_toTopOf="@id/tv_groupmate_help" />
-
-    <TextView
-        android:id="@+id/tv_arsiks_help_descr"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/help_Ars_descr"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tv_groupmate_help_descr"
-        app:layout_constraintTop_toTopOf="@id/tv_arsiks_help" />
 
 
     <TextView
@@ -113,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/choose_difficulty"
         app:layout_constraintBottom_toTopOf="@id/btn_difficulty_6"
         app:layout_constraintStart_toStartOf="parent" />
@@ -164,5 +107,19 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btn_difficulty_26_40"/>
 
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
+        android:layout_height="160dp"
+        android:layout_marginHorizontal="16dp"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_rules_graph"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="60dp"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
