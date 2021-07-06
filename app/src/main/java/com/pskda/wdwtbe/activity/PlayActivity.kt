@@ -154,8 +154,8 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
         override fun onFinish() {
             progressBarHorizontal!!.setProgress(0, true)
             for (btn in buttonsOfAnswer) btn?.isClickable = false
-            nextQuestion()
             buttonsOfAnswer[rightBtnIndex]!!.setBackgroundColor(resources.getColor(R.color.colorGood))
+            nextQuestion()
         }
     }
 
