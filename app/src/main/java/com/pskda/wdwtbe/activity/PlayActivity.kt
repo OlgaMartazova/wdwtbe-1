@@ -143,7 +143,7 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
             indicesOfAnswer[ind] = index
         }
         rightBtnIndex = question!!.indexOfRightAnswer
-        //rightBtn?.text = "Это верная кнопка"
+        buttonsOfAnswer[rightBtnIndex]?.text = "Это верная кнопка"
     }
 
     private var timer = object : CountDownTimer(startMills, 1000) {
@@ -359,7 +359,7 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
         buttonsOfHelpId = listOf(R.id.btn_help1, R.id.btn_help2, R.id.btn_help3, R.id.btn_help4)
     }
 
-    fun toggleFullScreen() {
+    private fun toggleFullScreen() {
         if (window.decorView.systemUiVisibility == SYSTEM_UI_FLAG_VISIBLE) {
             window.setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
