@@ -19,7 +19,7 @@
     <string name="help_Ars">помощь Арсика</string>
     
     <string name="type">Тип вопроса</string>
-    <string name="score">баллы %</string>
+    <string name="score">баллы: %</string>
 
 
 </resources>
