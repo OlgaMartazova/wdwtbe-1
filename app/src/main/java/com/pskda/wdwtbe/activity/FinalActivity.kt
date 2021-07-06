@@ -11,10 +11,10 @@ class FinalActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_final)
 
-        val tv_final: TextView = findViewById(R.id.tv_score)
+        val tvFinal: TextView = findViewById(R.id.tv_score)
 
         val text = getString(R.string.final_score_string, intent.getIntExtra("Score",0))
 
-        tv_final.text = text
+        tvFinal.text = text
     }
 }

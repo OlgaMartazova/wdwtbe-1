@@ -24,9 +24,11 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
     private var btnAns2: Button? = null
     private var btnAns3: Button? = null
     private var btnAns4: Button? = null
+
     private var tvQuestion: TextView? = null
     private var tvScore: TextView? = null
     private var tvType: TextView? = null
+
     private var btnHelp1: Button? = null
     private var btnHelp2: Button? = null
     private var btnHelp3: Button? = null
