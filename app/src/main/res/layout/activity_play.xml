@@ -246,4 +246,19 @@
         android:layout_marginStart="550dp"
         android:layout_marginBottom="350dp"/>
 
+    <ProgressBar
+        android:id="@+id/progressBarHorizontal"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="false"
+        android:max="30000"
+        android:minWidth="500dp"
+        android:minHeight="50dp"
+        android:progressBackgroundTint="@color/colorPrimary"
+        android:progressTint="@android:color/darker_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

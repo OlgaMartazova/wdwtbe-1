@@ -29,9 +29,17 @@ class MainMenuActivity : AppCompatActivity() {
         if (window.decorView.systemUiVisibility == View.SYSTEM_UI_FLAG_VISIBLE) {
             window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or View.SYSTEM_UI_FLAG_FULLSCREEN
-        } else {
-            window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        toggleFullScreen()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        this.finish()
+    }
+
 }
