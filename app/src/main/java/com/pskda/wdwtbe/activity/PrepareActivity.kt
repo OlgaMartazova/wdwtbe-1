@@ -162,11 +162,4 @@ class PrepareActivity : AppCompatActivity(), View.OnClickListener  {
         super.onStop()
         this.finish()
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        val intent = Intent(this, MainMenuActivity::class.java)
-        startActivity(intent)
-        this.finish()
-    }
 }

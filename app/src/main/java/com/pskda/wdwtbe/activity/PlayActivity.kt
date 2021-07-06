@@ -381,7 +381,7 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
         super.onStop()
         this.finish()
     }
-
+    
     // Готовая функция для диалога, можно использовать,
     // потом ее вызвать в setClickListener() {showDialog()}
 
