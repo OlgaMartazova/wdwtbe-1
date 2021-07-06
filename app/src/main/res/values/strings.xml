@@ -4,4 +4,6 @@
     <string name="final_score_string">Ты набрал: %d</string>
     <string name="extra_string">Тебе задали ДОП вопрос! Не ответишь - не сдал!</string>
     <string name="play">Играть</string>
+    <string name="result">Ты получил %s</string>
+    <string name="add">Какой-то текст про Арсика</string>
 </resources>
