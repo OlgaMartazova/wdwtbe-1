@@ -82,6 +82,8 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
 
         tvType?.text = getString(R.string.extra_string)
 
+        scoreCnt = intent?.extras?.getInt("Difficulty")!!
+
         setQuestion(diff[curDifficultyIndex])
     }
 
