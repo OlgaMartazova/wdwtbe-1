@@ -88,6 +88,12 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun setQuestion(item: Int) {
+
+        for (helpInd in isHelpUsed.indices) {
+            if (!isHelpUsed[helpInd]) {
+                buttonsOfHelp[helpInd]?.isClickable = true
+            }
+        }
         curDifficulty = item
         for (btn in buttonsOfAnswer) {
             btn?.visibility = VISIBLE
@@ -232,6 +238,11 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
             // Логика для верного ответа
             buttonsOfAnswerId[rightBtnIndex] -> {
                 Log.d("KNOPKA", "Нажата верная кнопка")
+                for (helpInd in isHelpUsed.indices) {
+                    if (!isHelpUsed[helpInd]) {
+                        buttonsOfHelp[helpInd]?.isClickable = false
+                    }
+                }
                 v.setBackgroundColor(resources.getColor(R.color.colorGood))
                 scoreCnt += curDifficulty // добавляем к текущим баллам сложность
                 tvScore?.text = scoreCnt.toString() // показываем баллы
@@ -240,6 +251,11 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
             // Логика для неверного ответа
             else -> {
                 Log.d("KNOPKA", "Нажата неверная кнопка")
+                for (helpInd in isHelpUsed.indices) {
+                    if (!isHelpUsed[helpInd]) {
+                        buttonsOfHelp[helpInd]?.isClickable = false
+                    }
+                }
                 v!!.setBackgroundColor(resources.getColor(R.color.colorBad))
                 buttonsOfAnswer[rightBtnIndex]!!.setBackgroundColor(resources.getColor(R.color.colorGood))
                 nextQuestion()
