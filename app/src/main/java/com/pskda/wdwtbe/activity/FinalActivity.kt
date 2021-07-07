@@ -42,11 +42,11 @@ class FinalActivity : AppCompatActivity() {
         when {
                 score > 85 -> {
                     tvScore?.text = "Ты получил $score / 100. Отлично"
-                    tvText?.text = "Вы справились с экзаменом. Советую Вам поступать на мехМат"
+                    tvText?.text = "Вы справились с экзаменом.\nСоветую Вам поступать на мехМат"
                 }
                 score > 70 -> {
                     tvScore?.text = "Ты получил $score / 100. Хорошо"
-                    tvText?.text = "Чепуху несёте. Натянул вам на четверку"
+                    tvText?.text = "Чепуху несёте.\nНатянул вам на четверку"
                 }
                 score > 55 -> {
                     tvScore?.text = "Ты получил $score / 100. Удовлетворительно"
@@ -54,7 +54,7 @@ class FinalActivity : AppCompatActivity() {
                 }
                 else -> {
                     tvScore?.text = "Ты получил $score / 100. Экзамен не сдан"
-                    tvText?.text = "Молодой человек, вы ничего не знаете. Вы отчислены"
+                    tvText?.text = "Молодой человек,\nвы ничего не знаете.\n Вы отчислены"
                 }
             }
 

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.FinalActivity">
+    tools:context=".activity.FinalActivity"
+    android:background="@color/white">
 
 
     <TextView
@@ -26,20 +27,22 @@
 
     <TextView
         android:id="@+id/tv_text"
-        android:layout_width="500dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
+        android:layout_marginStart="10dp"
+        android:background="@drawable/arsik_border2"
+
         android:fontFamily="@font/just_breathe_regular"
+
         android:text="@string/add"
         android:textColor="@color/black"
         android:textSize="30sp"
-
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.151"
+        app:layout_constraintEnd_toStartOf="@id/imageView"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_result"
-        app:layout_constraintVertical_bias="0.401" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_result" />
 
     <ImageButton
         android:id="@+id/btn_restart"
@@ -70,6 +73,16 @@
         app:layout_constraintVertical_bias="0.067"
         android:contentDescription="out">
     </ImageButton>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_text"
+        app:layout_constraintTop_toBottomOf="@+id/btn_restart"
+        app:srcCompat="@drawable/arslanov_final" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
