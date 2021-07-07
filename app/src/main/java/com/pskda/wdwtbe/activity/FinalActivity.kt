@@ -41,19 +41,19 @@ class FinalActivity : AppCompatActivity() {
         Log.d("FINAL", score.toString())
         when {
                 score > 85 -> {
-                    tvScore?.text = "Ты получил $score / 100. Отлично"
+                    tvScore?.text = "Ты получил $score/100. \nОтлично"
                     tvText?.text = "Вы справились с экзаменом.\nСоветую Вам поступать на мехМат"
                 }
                 score > 70 -> {
-                    tvScore?.text = "Ты получил $score / 100. Хорошо"
+                    tvScore?.text = "Ты получил $score/100. \nХорошо"
                     tvText?.text = "Чепуху несёте.\nНатянул вам на четверку"
                 }
                 score > 55 -> {
-                    tvScore?.text = "Ты получил $score / 100. Удовлетворительно"
+                    tvScore?.text = "Ты получил $score/100. \nУдовлетворительно"
                     tvText?.text = "Чепуху несёте"
                 }
                 else -> {
-                    tvScore?.text = "Ты получил $score / 100. Экзамен не сдан"
+                    tvScore?.text = "Ты получил $score/100. \nЭкзамен не сдан"
                     tvText?.text = "Молодой человек,\nвы ничего не знаете.\n Вы отчислены"
                 }
             }
