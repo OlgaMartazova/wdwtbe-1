@@ -56,58 +56,104 @@
         android:id="@+id/tv_choose_difficulty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
         android:layout_marginBottom="16dp"
+        android:fontFamily="@font/just_breathe_regular"
         android:text="@string/choose_difficulty"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+
         app:layout_constraintBottom_toTopOf="@id/btn_difficulty_6"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/host_fragment"
+        app:layout_constraintVertical_bias="0.85" />
 
     <Button
         android:id="@+id/btn_difficulty_6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="@string/difficulty_6"
+        android:text="невозможно"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:shadowColor="@color/black"
+        android:fontFamily="@font/just_breathe_regular"
+        android:layout_marginBottom="50dp"
+
+        app:backgroundTint="@android:color/transparent"
+        app:cornerRadius="8dp"
+        app:rippleColor="#33AAAAAA"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp"
+        app:layout_constraintStart_toEndOf="@+id/btn_difficulty_10_25"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_difficulty_10_25"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_chainStyle="spread" />
 
 
     <Button
         android:id="@+id/btn_difficulty_10_25"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="@string/difficulty_10_25"
+        android:layout_marginBottom="50dp"
+        android:text="сложно"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:shadowColor="@color/black"
+        android:fontFamily="@font/just_breathe_regular"
+
+        app:backgroundTint="@android:color/transparent"
+        app:cornerRadius="8dp"
+        app:rippleColor="#33AAAAAA"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_difficulty_6"
+        app:layout_constraintStart_toEndOf="@+id/btn_difficulty_26_40"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_difficulty_26_40"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_difficulty_6" />
+        app:layout_constraintHorizontal_bias="0.5" />
 
     <Button
         android:id="@+id/btn_difficulty_26_40"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="@string/difficulty_26_40"
+        android:layout_marginBottom="50dp"
+        android:text="нормально"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:shadowColor="@color/black"
+        android:fontFamily="@font/just_breathe_regular"
+
+        app:backgroundTint="@android:color/transparent"
+        app:cornerRadius="8dp"
+        app:rippleColor="#33AAAAAA"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_difficulty_10_25"
+        app:layout_constraintStart_toEndOf="@+id/btn_difficulty_41_50"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_difficulty_41_50"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_difficulty_10_25"/>
+        app:layout_constraintHorizontal_bias="0.5"/>
+
 
     <Button
         android:id="@+id/btn_difficulty_41_50"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="@string/difficulty_41_50"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_difficulty_26_40"/>
+        android:layout_marginBottom="48dp"
+        android:fontFamily="@font/just_breathe_regular"
+        android:shadowColor="@color/black"
+        android:text="легко"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
 
+        app:backgroundTint="@android:color/transparent"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toStartOf="@+id/btn_difficulty_26_40"
+        app:layout_constraintStart_toStartOf="parent"
+        app:rippleColor="#33AAAAAA"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/host_fragment"
@@ -115,12 +161,12 @@
         android:layout_width="0dp"
         android:layout_height="160dp"
         android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="92dp"
+
         app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_rules_graph"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="60dp"
-        />
+        app:navGraph="@navigation/nav_rules_graph" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
