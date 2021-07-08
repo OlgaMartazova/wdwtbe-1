@@ -12,7 +12,6 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.pskda.wdwtbe.R
@@ -233,12 +232,18 @@ class PlayActivity : AppCompatActivity(), OnClickListener {
                 if (curQuestionExtra) {
                     helpBlocked()
                 } else {
-                    if (helpCount == 3) {
-                        helpFinished()
-                    } else {
-                        isHelpUsed[3] = true
-                        helpCount++
-                        helpArsik()
+                    when {
+                        helpCount == 3 -> {
+                            helpFinished()
+                        }
+                        curDifficultyIndex == 7 -> {
+                            showMessage("Это последний вопрос. Молодой человек, думайте сами.")
+                        }
+                        else -> {
+                            isHelpUsed[3] = true
+                            helpCount++
+                            helpArsik()
+                        }
                     }
                 }
             }
@@ -252,12 +257,14 @@ class PlayActivity : AppCompatActivity(), OnClickListener {
                 }
                 v.setBackgroundColor(resources.getColor(R.color.colorGood))
                 scoreCnt += curDifficulty // добавляем к текущим баллам сложность
+                Log.d("RIGHT ANS SCORE", scoreCnt.toString())
                 tvScore?.text = scoreCnt.toString() // показываем баллы
                 nextQuestion()
             }
             // Логика для неверного ответа
             else -> {
                 Log.d("KNOPKA", "Нажата неверная кнопка")
+                Log.d("WRONG ANS SCORE", scoreCnt.toString())
                 for (helpInd in isHelpUsed.indices) {
                     if (!isHelpUsed[helpInd]) {
                         buttonsOfHelp[helpInd]?.isClickable = false
