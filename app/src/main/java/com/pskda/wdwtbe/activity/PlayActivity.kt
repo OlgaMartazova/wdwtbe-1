@@ -62,6 +62,7 @@ class PlayActivity : AppCompatActivity(), OnClickListener {
     private var scoreCnt: Int = 0
 
     private var helpCount: Int = 0
+    private var scoreDiff: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,7 +83,8 @@ class PlayActivity : AppCompatActivity(), OnClickListener {
 
         tvType?.text = getString(R.string.extra_string)
 
-        scoreCnt = intent?.extras?.getInt("Difficulty")!!
+        scoreDiff = intent?.extras?.getInt("Difficulty")!!
+        scoreCnt += scoreDiff
 
         setQuestion(diff[curDifficultyIndex])
     }
@@ -263,6 +265,11 @@ class PlayActivity : AppCompatActivity(), OnClickListener {
                 }
                 v!!.setBackgroundColor(resources.getColor(R.color.colorBad))
                 buttonsOfAnswer[rightBtnIndex]!!.setBackgroundColor(resources.getColor(R.color.colorGood))
+                if (curQuestionExtra) {
+                    val intent = Intent(this, FinalActivity::class.java)
+                    intent.putExtra("Score", scoreDiff)
+                    startActivity(intent)
+                }
                 nextQuestion()
             }
         }
@@ -271,11 +278,6 @@ class PlayActivity : AppCompatActivity(), OnClickListener {
     private fun nextQuestion() {
         timer.cancel()
         Handler(Looper.getMainLooper()).postDelayed({
-            if (curQuestionExtra) {
-                val intent = Intent(this, FinalActivity::class.java)
-                intent.putExtra("Score", 0)
-                startActivity(intent)
-            }
             if (curDifficultyIndex < diff.size - 1) {  // В этом if'e мы идем пока у нас есть вопросы (цифра это (кол-во вопросов - 1)), если вопросы закончились,
                 // переключаемся на конечный экран с баллами
                 curDifficultyIndex += 1
