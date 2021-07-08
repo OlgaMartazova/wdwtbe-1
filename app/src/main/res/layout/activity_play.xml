@@ -11,12 +11,12 @@
 
     <TextView
         android:id="@+id/tv_question"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="700dp"
+        android:layout_height="50dp"
         android:text="@string/question"
         android:fontFamily="@font/just_breathe_regular"
         android:textColor="@color/black"
-        android:textSize="30sp"
+        android:textSize="25sp"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,12 +27,12 @@
 
     <Button
         android:id="@+id/btn_ans1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="80dp"
         android:fontFamily="@font/just_breathe_regular"
         android:text="@string/ans1"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="15sp"
 
         style="@style/Widget.AppCompat.Button.Borderless"
 
@@ -53,8 +53,8 @@
 
     <Button
         android:id="@+id/btn_ans2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="80dp"
 
         android:fontFamily="@font/just_breathe_regular"
         android:text="@string/ans2"
@@ -62,7 +62,7 @@
 
         style="@style/Widget.AppCompat.Button.Borderless"
 
-        android:textSize="20sp"
+        android:textSize="15sp"
         app:backgroundTint="@null"
         app:cornerRadius="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -79,10 +79,10 @@
 
     <Button
         android:id="@+id/btn_ans3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="80dp"
         android:text="@string/ans3"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:textColor="@color/black"
         android:fontFamily="@font/just_breathe_regular"
 
@@ -104,15 +104,15 @@
 
     <Button
         android:id="@+id/btn_ans4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="80dp"
         android:fontFamily="@font/just_breathe_regular"
         android:text="@string/ans4"
         android:textColor="@color/black"
 
         style="@style/Widget.AppCompat.Button.Borderless"
 
-        android:textSize="20sp"
+        android:textSize="15sp"
         app:backgroundTint="@null"
         app:rippleColor="#33AAAAAA"
         app:strokeColor="@color/black"
