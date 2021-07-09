@@ -273,6 +273,7 @@ class PlayActivity : AppCompatActivity(), OnClickListener {
                 v!!.setBackgroundColor(resources.getColor(R.color.colorBad))
                 buttonsOfAnswer[rightBtnIndex]!!.setBackgroundColor(resources.getColor(R.color.colorGood))
                 if (curQuestionExtra) {
+                    timer.cancel()
                     val intent = Intent(this, FinalActivity::class.java)
                     intent.putExtra("Score", scoreDiff)
                     startActivity(intent)
