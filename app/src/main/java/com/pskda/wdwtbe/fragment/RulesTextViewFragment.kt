@@ -3,7 +3,8 @@ package com.pskda.wdwtbe.fragment
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
-import android.widget.Button
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.widget.ImageButton
 import android.widget.TextView
 import com.pskda.wdwtbe.R
@@ -29,28 +30,31 @@ class RulesTextViewFragment : Fragment(R.layout.fragment_rules_textview) {
             getString(R.string.rules_part4)
         )
 
+        imgBtnPrev?.visibility = INVISIBLE
         tvRules?.text = rulesStrings[counter]
-        counter++
-
         initListeners()
     }
 
     private fun initListeners() {
-        imgBtnPrev?.setOnClickListener() {
-            counter--
-            if (counter >= 0 && counter < rulesStrings.size) {
+        imgBtnPrev?.setOnClickListener {
+            imgBtnNext?.visibility = VISIBLE
+            if (counter > 0 && counter < rulesStrings.size) {
+                counter --
                 tvRules?.text = rulesStrings[counter]
-            } else {
-                counter++
+            }
+            if (counter == 0) {
+                imgBtnPrev?.visibility = INVISIBLE
             }
         }
 
-        imgBtnNext?.setOnClickListener() {
-            counter++
-            if (counter < rulesStrings.size && counter >= 0) {
+        imgBtnNext?.setOnClickListener {
+            imgBtnPrev?.visibility = VISIBLE
+            if (counter < rulesStrings.size-1 && counter >= 0) {
+                counter ++
                 tvRules?.text = rulesStrings[counter]
-            } else {
-                counter--
+            }
+            if (counter == rulesStrings.size-1) {
+                imgBtnNext?.visibility = INVISIBLE
             }
         }
     }

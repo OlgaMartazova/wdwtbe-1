@@ -12,7 +12,6 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.pskda.wdwtbe.R
@@ -21,7 +20,7 @@ import com.pskda.wdwtbe.model.QuestionRepository
 
 import java.util.*
 
-class PlayActivity : AppCompatActivity(), View.OnClickListener {
+class PlayActivity : AppCompatActivity(), OnClickListener {
 
     private var btnAns1: Button? = null
     private var btnAns2: Button? = null
@@ -39,8 +38,8 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
     private var btnHelp3: Button? = null
     private var btnHelp4: Button? = null
 
-    //private val diff = arrayOf(1, 2, 3, 5, 7, 9, 10, 13)
-    private val diff = arrayOf(1, 2)
+    private val diff = arrayOf(1, 2, 3, 5, 7, 9, 10, 13)
+    //private val diff = arrayOf(1, 2)
     private var curDifficulty: Int = 0
     private var curDifficultyIndex: Int = 0
 
@@ -62,13 +61,13 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
     private var scoreCnt: Int = 0
 
     private var helpCount: Int = 0
+    private var scoreDiff: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_play)
         findView()
-        toggleFullScreen()
 
         btnAns1!!.setOnClickListener(this)
         btnAns2!!.setOnClickListener(this)
@@ -82,12 +81,19 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
 
         tvType?.text = getString(R.string.extra_string)
 
-        scoreCnt = intent?.extras?.getInt("Difficulty")!!
+        scoreDiff = intent?.extras?.getInt("Difficulty")!!
+        scoreCnt += scoreDiff
 
         setQuestion(diff[curDifficultyIndex])
     }
 
     private fun setQuestion(item: Int) {
+
+        for (helpInd in isHelpUsed.indices) {
+            if (!isHelpUsed[helpInd]) {
+                buttonsOfHelp[helpInd]?.isClickable = true
+            }
+        }
         curDifficulty = item
         for (btn in buttonsOfAnswer) {
             btn?.visibility = VISIBLE
@@ -95,32 +101,32 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
             btn?.setBackgroundColor(0)
         } //кнопки становятся кликабельными, цвета обнуляются
 
-        var question: Question? = QuestionRepository.questions[item]?.get(Random().nextInt(3))
+        var question: Question? = QuestionRepository.questions.getValue(item)[Random().nextInt(3)]
         var type: Boolean? = question?.isExtra
 
-        if (item == 1) {
-            while (type == true) {
-                question = QuestionRepository.questions[item]?.get(Random().nextInt(3))
-            }
-        }
+        //не нужно, потому что в item=1 нет вопросов с пометкой ДОП
+//        if (item == 1) {
+//            while (type == true) {
+//                question = QuestionRepository.questions.getValue(item)[Random().nextInt(3)]
+//            }
+//        }
         // Арсик использован - теперь все вопросы ДОП
         if (isHelpUsed[3]) {
             while (type == false) {
-                question = QuestionRepository.questions[item]?.get(Random().nextInt(3))
-                if (question != null) {
-                    type = question.isExtra
-                }
+                question = QuestionRepository.questions.getValue(item)[Random().nextInt(3)]
+                type = question.isExtra
             }
         }
 
         curQuestionExtra = type!!
 
         if (type) {
-            tvType?.visibility = VISIBLE
+            tvType!!.visibility = VISIBLE
+            tvType!!.setTextColor(resources.getColor(R.color.warning))
             startMills = 10000
             timer.start()
         } else {
-            tvType?.visibility = GONE
+            tvType!!.visibility = GONE
             startMills = 30000
             timer.start()
         }
@@ -144,8 +150,14 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
             buttonsOfAnswer[ind]?.setText(question?.answers?.get(index)).toString()
             indicesOfAnswer[ind] = index
         }
-        rightBtnIndex = question!!.indexOfRightAnswer
-        buttonsOfAnswer[rightBtnIndex]?.text = "Это верная кнопка"
+        for (ind in indicesOfAnswer.indices) {
+            if (indicesOfAnswer[ind] == question!!.indexOfRightAnswer) {
+                rightBtnIndex = ind
+            }
+        }
+        //это не верная строчка, потому что ответы даются кнопкам рандомно
+        //rightBtnIndex = question!!.indexOfRightAnswer
+        //buttonsOfAnswer[rightBtnIndex]?.text = "Это верная кнопка"
     }
 
     private var timer = object : CountDownTimer(startMills, 1000) {
@@ -220,29 +232,52 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
                 if (curQuestionExtra) {
                     helpBlocked()
                 } else {
-                    if (helpCount == 3) {
-                        helpFinished()
-                    } else {
-                        isHelpUsed[3] = true
-                        helpCount++
-                        helpArsik()
+                    when {
+                        helpCount == 3 -> {
+                            helpFinished()
+                        }
+                        curDifficultyIndex == 7 -> {
+                            showMessage("Это последний вопрос. Молодой человек, думайте сами.")
+                        }
+                        else -> {
+                            isHelpUsed[3] = true
+                            helpCount++
+                            helpArsik()
+                        }
                     }
                 }
             }
             // Логика для верного ответа
             buttonsOfAnswerId[rightBtnIndex] -> {
                 Log.d("KNOPKA", "Нажата верная кнопка")
+                for (helpInd in isHelpUsed.indices) {
+                    if (!isHelpUsed[helpInd]) {
+                        buttonsOfHelp[helpInd]?.isClickable = false
+                    }
+                }
                 v.setBackgroundColor(resources.getColor(R.color.colorGood))
                 scoreCnt += curDifficulty // добавляем к текущим баллам сложность
+                Log.d("RIGHT ANS SCORE", scoreCnt.toString())
                 tvScore?.text = scoreCnt.toString() // показываем баллы
                 nextQuestion()
             }
             // Логика для неверного ответа
             else -> {
                 Log.d("KNOPKA", "Нажата неверная кнопка")
+                Log.d("WRONG ANS SCORE", scoreCnt.toString())
+                for (helpInd in isHelpUsed.indices) {
+                    if (!isHelpUsed[helpInd]) {
+                        buttonsOfHelp[helpInd]?.isClickable = false
+                    }
+                }
                 v!!.setBackgroundColor(resources.getColor(R.color.colorBad))
                 buttonsOfAnswer[rightBtnIndex]!!.setBackgroundColor(resources.getColor(R.color.colorGood))
-                nextQuestion()
+                if (curQuestionExtra) {
+                    timer.cancel()
+                    val intent = Intent(this, FinalActivity::class.java)
+                    intent.putExtra("Score", scoreDiff)
+                    startActivity(intent)
+                }else nextQuestion()
             }
         }
     }
@@ -250,11 +285,6 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
     private fun nextQuestion() {
         timer.cancel()
         Handler(Looper.getMainLooper()).postDelayed({
-            if (curQuestionExtra) {
-                val intent = Intent(this, FinalActivity::class.java)
-                intent.putExtra("Score", 0)
-                startActivity(intent)
-            }
             if (curDifficultyIndex < diff.size - 1) {  // В этом if'e мы идем пока у нас есть вопросы (цифра это (кол-во вопросов - 1)), если вопросы закончились,
                 // переключаемся на конечный экран с баллами
                 curDifficultyIndex += 1
@@ -305,12 +335,10 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun helpCheating() {
         val randomDiff: Int = diff[Random().nextInt(diff.size)]
-        val randomQuestion: Question? =
-            QuestionRepository.questions[randomDiff]?.get(Random().nextInt(3))
-        val rightAnswer: String? = randomQuestion?.answers?.get(randomQuestion.indexOfRightAnswer)
-        if (rightAnswer != null) {
-            showMessage(rightAnswer)
-        }
+        val randomQuestion: Question =
+            QuestionRepository.questions.getValue(randomDiff)[Random().nextInt(3)]
+        val rightAnswer: String = randomQuestion.answers[randomQuestion.indexOfRightAnswer]
+        showMessage(rightAnswer)
         for (btn in buttonsOfAnswer) btn?.isClickable = true
     }
 
@@ -361,20 +389,21 @@ class PlayActivity : AppCompatActivity(), View.OnClickListener {
         buttonsOfHelpId = listOf(R.id.btn_help1, R.id.btn_help2, R.id.btn_help3, R.id.btn_help4)
     }
 
-    private fun toggleFullScreen() {
-        if (window.decorView.systemUiVisibility == SYSTEM_UI_FLAG_VISIBLE) {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-            window.decorView.systemUiVisibility =
-                SYSTEM_UI_FLAG_HIDE_NAVIGATION or SYSTEM_UI_FLAG_IMMERSIVE_STICKY or SYSTEM_UI_FLAG_FULLSCREEN
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (hasFocus) {
+            hideSystemUI()
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        toggleFullScreen()
+    private fun hideSystemUI() {
+        val decorView = window.decorView
+        decorView.systemUiVisibility = (SYSTEM_UI_FLAG_IMMERSIVE
+                or SYSTEM_UI_FLAG_LAYOUT_STABLE
+                or SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                or SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                or SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                or SYSTEM_UI_FLAG_FULLSCREEN)
     }
 
     override fun onStop() {
