@@ -6,13 +6,13 @@ import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
-import android.widget.ImageButton
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.pskda.wdwtbe.R
 import kotlin.random.Random
+
 
 class PrepareActivity : AppCompatActivity(), View.OnClickListener  {
 
@@ -23,10 +23,10 @@ class PrepareActivity : AppCompatActivity(), View.OnClickListener  {
     private var btnDifficulty2640: Button? = null
     private var btnDifficulty4150: Button? = null
 
-    private var imgBtn50_50: ImageButton? = null
-    private var imgBtnCheatNote: ImageButton? = null
-    private var imgBtnGroupmateHelp: ImageButton? = null
-    private var imgBtnArsiksHelp: ImageButton? = null
+    private var imgBtn50_50: Button? = null
+    private var imgBtnCheatNote: Button? = null
+    private var imgBtnGroupmateHelp: Button? = null
+    private var imgBtnArsiksHelp: Button? = null
 
     private var isDifficultyChosen: Boolean = false
     private var difficultyScore: Int = 0
@@ -63,10 +63,10 @@ class PrepareActivity : AppCompatActivity(), View.OnClickListener  {
         btnDifficulty2640 = findViewById(R.id.btn_difficulty_26_40)
         btnDifficulty4150 = findViewById(R.id.btn_difficulty_41_50)
 
-        imgBtn50_50 = findViewById(R.id.img_btn_fifty_fifty)
-        imgBtnCheatNote = findViewById(R.id.img_btn_cheat_notes)
-        imgBtnGroupmateHelp = findViewById(R.id.img_btn_groupmate_help)
-        imgBtnArsiksHelp = findViewById(R.id.img_btn_arsiks_help)
+        imgBtn50_50 = findViewById(R.id.btn_fifty_fifty)
+        imgBtnCheatNote = findViewById(R.id.btn_cheat_notes)
+        imgBtnGroupmateHelp = findViewById(R.id.btn_groupmate_help)
+        imgBtnArsiksHelp = findViewById(R.id.btn_arsiks_help)
     }
 
     override fun onClick(view: View?) {
@@ -133,13 +133,26 @@ class PrepareActivity : AppCompatActivity(), View.OnClickListener  {
     override fun onSupportNavigateUp(): Boolean = controller.navigateUp()
 
     private fun showDialog(title: String, message: String) {
-        AlertDialog.Builder(this)
-            .setTitle(title)
-            .setMessage(message)
-            .setPositiveButton("ok") { dialog, _ ->
-                dialog.dismiss()
-            }
-            .show()
+        val alertDialog =
+            AlertDialog.Builder(this,  R.style.MyAlertDialogTheme)
+                .setTitle(title)
+                .setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton(
+                "OK")
+                { dialogInterface, i -> dialogInterface.dismiss() }
+                .create()
+
+        alertDialog.window!!.setFlags(
+            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+        )
+
+        alertDialog.show()
+
+        hideSystemUI(alertDialog.window!!.decorView)
+
+        alertDialog.window!!.clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE)
     }
 
 
@@ -150,8 +163,7 @@ class PrepareActivity : AppCompatActivity(), View.OnClickListener  {
         }
     }
 
-    private fun hideSystemUI() {
-        val decorView = window.decorView
+    private fun hideSystemUI(decorView: View = window.decorView) {
         decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_IMMERSIVE
                 or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION

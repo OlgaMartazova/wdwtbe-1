@@ -7,48 +7,83 @@
     tools:context=".activity.PrepareActivity"
     android:background="@color/white">
 
-    <ImageButton
-        android:id="@+id/img_btn_fifty_fifty"
+    <Button
+        android:id="@+id/btn_fifty_fifty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:src="@drawable/ic_baseline_help_24"
-        app:layout_constraintEnd_toStartOf="@+id/img_btn_cheat_notes"
+        android:fontFamily="@font/just_breathe_regular"
+        android:text="@string/_50_50"
+
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:backgroundTint="@android:color/transparent"
+        app:cornerRadius="10dp"
+        app:rippleColor="#33AAAAAA"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_cheat_notes"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/img_btn_cheat_notes"
+    <Button
+        android:id="@+id/btn_cheat_notes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:src="@drawable/ic_baseline_help_24"
-        app:layout_constraintEnd_toStartOf="@+id/img_btn_groupmate_help"
+        android:fontFamily="@font/just_breathe_regular"
+        android:text="@string/cheat_note"
+
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:backgroundTint="@android:color/transparent"
+        app:cornerRadius="10dp"
+        app:rippleColor="#33AAAAAA"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_groupmate_help"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/img_btn_fifty_fifty"
+        app:layout_constraintStart_toEndOf="@+id/btn_fifty_fifty"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/img_btn_groupmate_help"
+    <Button
+        android:id="@+id/btn_groupmate_help"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:src="@drawable/ic_baseline_help_24"
-        app:layout_constraintEnd_toStartOf="@+id/img_btn_arsiks_help"
+        android:fontFamily="@font/just_breathe_regular"
+        android:text="@string/groupmate_help"
+
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:backgroundTint="@android:color/transparent"
+        app:cornerRadius="10dp"
+        app:rippleColor="#33AAAAAA"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_arsiks_help"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/img_btn_cheat_notes"
+        app:layout_constraintStart_toEndOf="@+id/btn_cheat_notes"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/img_btn_arsiks_help"
+    <Button
+        android:id="@+id/btn_arsiks_help"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:src="@drawable/ic_baseline_help_24"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/just_breathe_regular"
+        android:text="@string/ars_help"
+
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:backgroundTint="@android:color/transparent"
+        app:cornerRadius="10dp"
+        app:rippleColor="#33AAAAAA"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp"        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/img_btn_groupmate_help"
+        app:layout_constraintStart_toEndOf="@+id/btn_groupmate_help"
         app:layout_constraintTop_toTopOf="parent" />
 
 
