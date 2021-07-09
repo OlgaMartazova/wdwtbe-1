@@ -276,8 +276,7 @@ class PlayActivity : AppCompatActivity(), OnClickListener {
                     val intent = Intent(this, FinalActivity::class.java)
                     intent.putExtra("Score", scoreDiff)
                     startActivity(intent)
-                }
-                nextQuestion()
+                }else nextQuestion()
             }
         }
     }
