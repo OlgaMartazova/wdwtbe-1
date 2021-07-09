@@ -68,7 +68,6 @@ class PlayActivity : AppCompatActivity(), OnClickListener {
 
         setContentView(R.layout.activity_play)
         findView()
-        toggleFullScreen()
 
         btnAns1!!.setOnClickListener(this)
         btnAns2!!.setOnClickListener(this)
@@ -122,11 +121,12 @@ class PlayActivity : AppCompatActivity(), OnClickListener {
         curQuestionExtra = type!!
 
         if (type) {
-            tvType?.visibility = VISIBLE
+            tvType!!.visibility = VISIBLE
+            tvType!!.setTextColor(resources.getColor(R.color.warning))
             startMills = 10000
             timer.start()
         } else {
-            tvType?.visibility = GONE
+            tvType!!.visibility = GONE
             startMills = 30000
             timer.start()
         }
@@ -389,20 +389,21 @@ class PlayActivity : AppCompatActivity(), OnClickListener {
         buttonsOfHelpId = listOf(R.id.btn_help1, R.id.btn_help2, R.id.btn_help3, R.id.btn_help4)
     }
 
-    private fun toggleFullScreen() {
-        if (window.decorView.systemUiVisibility == SYSTEM_UI_FLAG_VISIBLE) {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-            window.decorView.systemUiVisibility =
-                SYSTEM_UI_FLAG_HIDE_NAVIGATION or SYSTEM_UI_FLAG_IMMERSIVE_STICKY or SYSTEM_UI_FLAG_FULLSCREEN
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (hasFocus) {
+            hideSystemUI()
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        toggleFullScreen()
+    private fun hideSystemUI() {
+        val decorView = window.decorView
+        decorView.systemUiVisibility = (SYSTEM_UI_FLAG_IMMERSIVE
+                or SYSTEM_UI_FLAG_LAYOUT_STABLE
+                or SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                or SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                or SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                or SYSTEM_UI_FLAG_FULLSCREEN)
     }
 
     override fun onStop() {
