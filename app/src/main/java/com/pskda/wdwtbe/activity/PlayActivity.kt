@@ -39,7 +39,6 @@ class PlayActivity : AppCompatActivity(), OnClickListener {
     private var btnHelp4: Button? = null
 
     private val diff = arrayOf(1, 2, 3, 5, 7, 9, 10, 13)
-    //private val diff = arrayOf(1, 2)
     private var curDifficulty: Int = 0
     private var curDifficultyIndex: Int = 0
 
@@ -237,7 +236,7 @@ class PlayActivity : AppCompatActivity(), OnClickListener {
                             helpFinished()
                         }
                         curDifficultyIndex == 7 -> {
-                            showMessage("Это последний вопрос. Молодой человек, думайте сами.")
+                            helparsikLast()
                         }
                         else -> {
                             isHelpUsed[3] = true
@@ -359,6 +358,11 @@ class PlayActivity : AppCompatActivity(), OnClickListener {
         scoreCnt += curDifficulty // добавляем к текущим баллам сложность
         tvScore?.text = scoreCnt.toString() // показываем баллы
         nextQuestion()
+    }
+
+    private fun helparsikLast() {
+        showMessage("Это последний вопрос. Молодой человек, думайте сами.")
+        for (btn in buttonsOfAnswer) btn?.isClickable = true
     }
 
     private fun showMessage(message: String) {
