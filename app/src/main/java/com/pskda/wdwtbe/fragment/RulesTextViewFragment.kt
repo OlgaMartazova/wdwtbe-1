@@ -1,27 +1,41 @@
 package com.pskda.wdwtbe.fragment
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
+import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import com.pskda.wdwtbe.R
+import com.pskda.wdwtbe.databinding.FragmentRulesTextviewBinding
 
-class RulesTextViewFragment : Fragment(R.layout.fragment_rules_textview) {
-
-    private var imgBtnNext: ImageButton? = null
-    private var imgBtnPrev: ImageButton? = null
-    private var tvRules: TextView? = null
+class RulesTextViewFragment : Fragment() {
 
     private var rulesStrings: List<String> = emptyList()
     private var counter: Int = 0
 
+    private var _binding: FragmentRulesTextviewBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentRulesTextviewBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        findView(view)
 
         rulesStrings = listOf(
             getString(R.string.rules_part1),
@@ -30,38 +44,34 @@ class RulesTextViewFragment : Fragment(R.layout.fragment_rules_textview) {
             getString(R.string.rules_part4)
         )
 
-        imgBtnPrev?.visibility = INVISIBLE
-        tvRules?.text = rulesStrings[counter]
+        binding.imgBtnPrev.visibility = INVISIBLE
+        binding.tvRules.text = rulesStrings[counter]
         initListeners()
     }
 
     private fun initListeners() {
-        imgBtnPrev?.setOnClickListener {
-            imgBtnNext?.visibility = VISIBLE
-            if (counter > 0 && counter < rulesStrings.size) {
-                counter --
-                tvRules?.text = rulesStrings[counter]
+        with (binding) {
+            imgBtnPrev.setOnClickListener {
+                imgBtnNext.visibility = VISIBLE
+                if (counter > 0 && counter < rulesStrings.size) {
+                    counter--
+                    tvRules.text = rulesStrings[counter]
+                }
+                if (counter == 0) {
+                    imgBtnPrev.visibility = INVISIBLE
+                }
             }
-            if (counter == 0) {
-                imgBtnPrev?.visibility = INVISIBLE
+
+            imgBtnNext.setOnClickListener {
+                imgBtnPrev.visibility = VISIBLE
+                if (counter < rulesStrings.size - 1 && counter >= 0) {
+                    counter++
+                    tvRules.text = rulesStrings[counter]
+                }
+                if (counter == rulesStrings.size - 1) {
+                    imgBtnNext.visibility = INVISIBLE
+                }
             }
         }
-
-        imgBtnNext?.setOnClickListener {
-            imgBtnPrev?.visibility = VISIBLE
-            if (counter < rulesStrings.size-1 && counter >= 0) {
-                counter ++
-                tvRules?.text = rulesStrings[counter]
-            }
-            if (counter == rulesStrings.size-1) {
-                imgBtnNext?.visibility = INVISIBLE
-            }
-        }
-    }
-
-    private fun findView(view: View) {
-        imgBtnNext = view.findViewById(R.id.img_btn_next)
-        imgBtnPrev = view.findViewById(R.id.img_btn_prev)
-        tvRules = view.findViewById(R.id.tv_rules)
     }
 }

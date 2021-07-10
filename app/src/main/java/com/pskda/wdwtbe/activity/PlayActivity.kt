@@ -15,6 +15,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.pskda.wdwtbe.R
+import com.pskda.wdwtbe.databinding.ActivityPlayBinding
 import com.pskda.wdwtbe.model.Question
 import com.pskda.wdwtbe.model.QuestionRepository
 
@@ -22,27 +23,11 @@ import java.util.*
 
 class PlayActivity : AppCompatActivity(), OnClickListener {
 
-    private var btnAns1: Button? = null
-    private var btnAns2: Button? = null
-    private var btnAns3: Button? = null
-    private var btnAns4: Button? = null
-
-    private var tvQuestion: TextView? = null
-    private var tvScore: TextView? = null
-    private var tvType: TextView? = null
-
-    private var progressBarHorizontal: ProgressBar? = null
-
-    private var btnHelp1: Button? = null
-    private var btnHelp2: Button? = null
-    private var btnHelp3: Button? = null
-    private var btnHelp4: Button? = null
-
     private val diff = arrayOf(1, 2, 3, 5, 7, 9, 10, 13)
     private var curDifficulty: Int = 0
     private var curDifficultyIndex: Int = 0
-
-    private var rightBtnIndex: Int = 0
+    private var scoreCnt: Int = 0
+    private var scoreDiff: Int = 0
 
     private var startMills: Long = 30000
 
@@ -51,34 +36,40 @@ class PlayActivity : AppCompatActivity(), OnClickListener {
     private var buttonsOfAnswer: List<Button?> = emptyList()
     private var buttonsOfAnswerId: List<Int> = emptyList()
     private var indicesOfAnswer = arrayOf(-1, -1, -1, -1)
+    private var rightBtnIndex: Int = 0
 
     private var buttonsOfHelp: List<Button?> = emptyList()
     private var buttonsOfHelpId: List<Int> = emptyList()
     private var isHelpUsed = arrayOf(false, false, false, false)
-
-
-    private var scoreCnt: Int = 0
-
     private var helpCount: Int = 0
-    private var scoreDiff: Int = 0
+
+    private lateinit var binding: ActivityPlayBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_play)
-        findView()
+        binding = ActivityPlayBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        btnAns1!!.setOnClickListener(this)
-        btnAns2!!.setOnClickListener(this)
-        btnAns3!!.setOnClickListener(this)
-        btnAns4!!.setOnClickListener(this)
+        with (binding) {
+            buttonsOfAnswer = listOf(btnAns1, btnAns2, btnAns3, btnAns4)
+        buttonsOfAnswerId = listOf(R.id.btn_ans1, R.id.btn_ans2, R.id.btn_ans3, R.id.btn_ans4)
+        buttonsOfHelp = listOf(btnHelp1, btnHelp2, btnHelp3, btnHelp4)
+        buttonsOfHelpId = listOf(R.id.btn_help1, R.id.btn_help2, R.id.btn_help3, R.id.btn_help4)
+        }
 
-        btnHelp1!!.setOnClickListener(this)
-        btnHelp2!!.setOnClickListener(this)
-        btnHelp3!!.setOnClickListener(this)
-        btnHelp4!!.setOnClickListener(this)
+        binding.btnAns1.setOnClickListener(this)
+        binding.btnAns2.setOnClickListener(this)
+        binding.btnAns3.setOnClickListener(this)
+        binding.btnAns4.setOnClickListener(this)
 
-        tvType?.text = getString(R.string.extra_string)
+        binding.btnHelp1.setOnClickListener(this)
+        binding.btnHelp2.setOnClickListener(this)
+        binding.btnHelp3.setOnClickListener(this)
+        binding.btnHelp4.setOnClickListener(this)
+
+        binding.tvType.text = getString(R.string.extra_string)
 
         scoreDiff = intent?.extras?.getInt("Difficulty")!!
         scoreCnt += scoreDiff
@@ -120,12 +111,12 @@ class PlayActivity : AppCompatActivity(), OnClickListener {
         curQuestionExtra = type!!
 
         if (type) {
-            tvType!!.visibility = VISIBLE
-            tvType!!.setTextColor(resources.getColor(R.color.warning))
+            binding.tvType.visibility = VISIBLE
+            binding.tvType.setTextColor(resources.getColor(R.color.warning))
             startMills = 10000
             timer.start()
         } else {
-            tvType!!.visibility = GONE
+            binding.tvType.visibility = GONE
             startMills = 30000
             timer.start()
         }
@@ -136,8 +127,8 @@ class PlayActivity : AppCompatActivity(), OnClickListener {
             else buttonsOfHelp[ind]?.visibility = VISIBLE
         }
 
-        tvQuestion?.setText(question?.name).toString()
-        tvScore?.text = scoreCnt.toString()
+        binding.tvQuestion.setText(question?.name).toString()
+        binding.tvScore.text = scoreCnt.toString()
 
         for (ind in buttonsOfAnswer.indices) {
             var index: Int = Random().nextInt(4)
@@ -161,11 +152,11 @@ class PlayActivity : AppCompatActivity(), OnClickListener {
 
     private var timer = object : CountDownTimer(startMills, 1000) {
         override fun onTick(millisUntilFinished: Long) {
-            progressBarHorizontal!!.setProgress((millisUntilFinished).toInt(), true)
+            binding.progressBarHorizontal.setProgress((millisUntilFinished).toInt(), true)
         }
 
         override fun onFinish() {
-            progressBarHorizontal!!.setProgress(0, true)
+            binding.progressBarHorizontal.setProgress(0, true)
             for (btn in buttonsOfAnswer) btn?.isClickable = false
             buttonsOfAnswer[rightBtnIndex]!!.setBackgroundColor(resources.getColor(R.color.colorGood))
             nextQuestion()
@@ -257,7 +248,7 @@ class PlayActivity : AppCompatActivity(), OnClickListener {
                 v.setBackgroundColor(resources.getColor(R.color.colorGood))
                 scoreCnt += curDifficulty // добавляем к текущим баллам сложность
                 Log.d("RIGHT ANS SCORE", scoreCnt.toString())
-                tvScore?.text = scoreCnt.toString() // показываем баллы
+                binding.tvScore.text = scoreCnt.toString() // показываем баллы
                 nextQuestion()
             }
             // Логика для неверного ответа
@@ -346,7 +337,7 @@ class PlayActivity : AppCompatActivity(), OnClickListener {
         buttonsOfAnswer[rightBtnIndex]?.setBackgroundColor(resources.getColor(R.color.colorGood))
         if (randomAnswerInd == rightBtnIndex) {
             scoreCnt += curDifficulty // добавляем к текущим баллам сложность
-            tvScore?.text = scoreCnt.toString() // показываем баллы
+            binding.tvScore.text = scoreCnt.toString() // показываем баллы
         } else {
             buttonsOfAnswer[randomAnswerInd]?.setBackgroundColor(resources.getColor(R.color.colorBad))
         }
@@ -356,7 +347,7 @@ class PlayActivity : AppCompatActivity(), OnClickListener {
     private fun helpArsik() {
         buttonsOfAnswer[rightBtnIndex]?.setBackgroundColor(resources.getColor(R.color.colorGood))
         scoreCnt += curDifficulty // добавляем к текущим баллам сложность
-        tvScore?.text = scoreCnt.toString() // показываем баллы
+        binding.tvScore.text = scoreCnt.toString() // показываем баллы
         nextQuestion()
     }
 
@@ -367,30 +358,6 @@ class PlayActivity : AppCompatActivity(), OnClickListener {
 
     private fun showMessage(message: String) {
         Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG).show()
-    }
-
-    private fun findView() {
-        btnAns1 = findViewById(R.id.btn_ans1)
-        btnAns2 = findViewById(R.id.btn_ans2)
-        btnAns3 = findViewById(R.id.btn_ans3)
-        btnAns4 = findViewById(R.id.btn_ans4)
-
-        tvQuestion = findViewById(R.id.tv_question)
-        tvScore = findViewById(R.id.tv_score)
-        tvType = findViewById(R.id.tv_type)
-
-        progressBarHorizontal = findViewById(R.id.progressBarHorizontal)
-
-        btnHelp1 = findViewById(R.id.btn_help1)
-        btnHelp2 = findViewById(R.id.btn_help2)
-        btnHelp3 = findViewById(R.id.btn_help3)
-        btnHelp4 = findViewById(R.id.btn_help4)
-
-        buttonsOfAnswer = listOf(btnAns1, btnAns2, btnAns3, btnAns4)
-        buttonsOfAnswerId = listOf(R.id.btn_ans1, R.id.btn_ans2, R.id.btn_ans3, R.id.btn_ans4)
-
-        buttonsOfHelp = listOf(btnHelp1, btnHelp2, btnHelp3, btnHelp4)
-        buttonsOfHelpId = listOf(R.id.btn_help1, R.id.btn_help2, R.id.btn_help3, R.id.btn_help4)
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
@@ -414,21 +381,4 @@ class PlayActivity : AppCompatActivity(), OnClickListener {
         super.onStop()
         this.finish()
     }
-    
-    // Готовая функция для диалога, можно использовать,
-    // потом ее вызвать в setClickListener() {showDialog()}
-
-//    private fun showDialog() {
-//        AlertDialog.Builder(this)
-//            .setTitle("Title")
-//            .setMessage("Message")
-//            .setPositiveButton("использовать") { dialog, _ ->
-//                dialog.dismiss()
-//            }
-//            .setNegativeButton("выйти") { dialog, _ ->
-//                dialog.dismiss()
-//            }
-//            .show()
-//    }
-
 }

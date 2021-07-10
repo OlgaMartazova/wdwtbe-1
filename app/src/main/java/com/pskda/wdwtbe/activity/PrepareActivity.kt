@@ -11,22 +11,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.pskda.wdwtbe.R
+import com.pskda.wdwtbe.databinding.ActivityPlayBinding
+import com.pskda.wdwtbe.databinding.ActivityPrepareBinding
 import kotlin.random.Random
 
 
 class PrepareActivity : AppCompatActivity(), View.OnClickListener  {
 
     private lateinit var controller: NavController
-
-    private var btnDifficulty6: Button? = null
-    private var btnDifficulty1025: Button? = null
-    private var btnDifficulty2640: Button? = null
-    private var btnDifficulty4150: Button? = null
-
-    private var imgBtn50_50: Button? = null
-    private var imgBtnCheatNote: Button? = null
-    private var imgBtnGroupmateHelp: Button? = null
-    private var imgBtnArsiksHelp: Button? = null
 
     private var isDifficultyChosen: Boolean = false
     private var difficultyScore: Int = 0
@@ -37,89 +29,85 @@ class PrepareActivity : AppCompatActivity(), View.OnClickListener  {
     private val difficulty40 = 40
     private val difficulty50 = 50
 
+    private lateinit var binding: ActivityPrepareBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_prepare)
+        binding = ActivityPrepareBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        findView()
+        binding.btnDifficulty6.setOnClickListener(this)
+        binding.btnDifficulty1025.setOnClickListener(this)
+        binding.btnDifficulty2640.setOnClickListener(this)
+        binding.btnDifficulty4150.setOnClickListener(this)
 
-        btnDifficulty6!!.setOnClickListener(this)
-        btnDifficulty1025!!.setOnClickListener(this)
-        btnDifficulty2640!!.setOnClickListener(this)
-        btnDifficulty4150!!.setOnClickListener(this)
-
-        imgBtn50_50!!.setOnClickListener(this)
-        imgBtnCheatNote!!.setOnClickListener(this)
-        imgBtnGroupmateHelp!!.setOnClickListener(this)
-        imgBtnArsiksHelp!!.setOnClickListener(this)
+        binding.btnFiftyFifty.setOnClickListener(this)
+        binding.btnCheatNotes.setOnClickListener(this)
+        binding.btnGroupmateHelp.setOnClickListener(this)
+        binding.btnArsiksHelp.setOnClickListener(this)
 
         controller = (supportFragmentManager.findFragmentById(R.id.host_fragment) as NavHostFragment)
             .navController
     }
 
-    private fun findView() {
-        btnDifficulty6 = findViewById(R.id.btn_difficulty_6)
-        btnDifficulty1025 = findViewById(R.id.btn_difficulty_10_25)
-        btnDifficulty2640 = findViewById(R.id.btn_difficulty_26_40)
-        btnDifficulty4150 = findViewById(R.id.btn_difficulty_41_50)
-
-        imgBtn50_50 = findViewById(R.id.btn_fifty_fifty)
-        imgBtnCheatNote = findViewById(R.id.btn_cheat_notes)
-        imgBtnGroupmateHelp = findViewById(R.id.btn_groupmate_help)
-        imgBtnArsiksHelp = findViewById(R.id.btn_arsiks_help)
-    }
-
     override fun onClick(view: View?) {
-        when (view?.id) {
-            btnDifficulty6?.id -> {
-                Log.d("KNOPKA", "Нажата кнопка выбора сложности 6")
+        with (binding) {
+            when (view?.id) {
+                btnDifficulty6.id -> {
+                    Log.d("KNOPKA", "Нажата кнопка выбора сложности 6")
 
-                if (!isDifficultyChosen) {
-                    difficultyScore = hardDifficulty
-                    isDifficultyChosen = true
+                    if (!isDifficultyChosen) {
+                        difficultyScore = hardDifficulty
+                        isDifficultyChosen = true
+                    }
+                }
+
+                btnDifficulty1025.id -> {
+                    Log.d("KNOPKA", "Нажата кнопка выбора сложности 10 - 25")
+                    if (!isDifficultyChosen) {
+                        difficultyScore =
+                            Random.nextInt(from = difficulty10, until = difficulty25 + 1)
+                        isDifficultyChosen = true
+                    }
+                }
+
+                btnDifficulty2640.id -> {
+                    Log.d("KNOPKA", "Нажата кнопка выбора сложности 26 - 40")
+                    if (!isDifficultyChosen) {
+                        difficultyScore =
+                            Random.nextInt(from = difficulty25 + 1, until = difficulty40 + 1)
+                        isDifficultyChosen = true
+                    }
+                }
+
+                btnDifficulty4150.id -> {
+                    Log.d("KNOPKA", "Нажата кнопка выбора сложности 41 - 50")
+                    if (!isDifficultyChosen) {
+                        difficultyScore =
+                            Random.nextInt(from = difficulty40 + 1, until = difficulty50 + 1)
+                        isDifficultyChosen = true
+                    }
+                }
+
+                btnFiftyFifty.id -> {
+                    showDialog(getString(R.string._50_50), getString(R.string._50_50_descr))
+                }
+
+                btnCheatNotes.id -> {
+                    showDialog(getString(R.string.cheat_note), getString(R.string.cheat_note_descr))
+                }
+
+                btnGroupmateHelp.id -> {
+                    showDialog(
+                        getString(R.string.groupmate_help),
+                        getString(R.string.groupmate_help_descr)
+                    )
+                }
+
+                btnArsiksHelp.id -> {
+                    showDialog(getString(R.string.ars_help), getString(R.string.ars_help_descr))
                 }
             }
-
-            btnDifficulty1025?.id -> {
-                Log.d("KNOPKA", "Нажата кнопка выбора сложности 10 - 25")
-                if (!isDifficultyChosen) {
-                    difficultyScore = Random.nextInt(from = difficulty10, until = difficulty25 + 1)
-                    isDifficultyChosen = true
-                }
-            }
-
-            btnDifficulty2640?.id -> {
-                Log.d("KNOPKA", "Нажата кнопка выбора сложности 26 - 40")
-                if (!isDifficultyChosen) {
-                    difficultyScore = Random.nextInt(from = difficulty25 + 1, until = difficulty40 + 1)
-                    isDifficultyChosen = true
-                }
-            }
-
-            btnDifficulty4150?.id -> {
-                Log.d("KNOPKA", "Нажата кнопка выбора сложности 41 - 50")
-                if (!isDifficultyChosen) {
-                    difficultyScore = Random.nextInt(from = difficulty40 + 1, until = difficulty50 + 1)
-                    isDifficultyChosen = true
-                }
-            }
-
-            imgBtn50_50?.id -> {
-                showDialog(getString(R.string._50_50), getString(R.string._50_50_descr))
-            }
-
-            imgBtnCheatNote?.id -> {
-                showDialog(getString(R.string.cheat_note), getString(R.string.cheat_note_descr))
-            }
-
-            imgBtnGroupmateHelp?.id -> {
-                showDialog(getString(R.string.groupmate_help), getString(R.string.groupmate_help_descr))
-            }
-
-            imgBtnArsiksHelp?.id -> {
-                showDialog(getString(R.string.ars_help), getString(R.string.ars_help_descr))
-            }
-
         }
 
         if (isDifficultyChosen) {

@@ -8,21 +8,21 @@ import android.view.WindowManager
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.pskda.wdwtbe.R
+import com.pskda.wdwtbe.databinding.ActivityMainMenuBinding
+import com.pskda.wdwtbe.databinding.ActivityPlayBinding
 
 class MainMenuActivity : AppCompatActivity() {
 
-    private var btnPlay : Button? = null
-    private var tvNameApp : TextView? = null
+    private lateinit var binding: ActivityMainMenuBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main_menu)
+        binding = ActivityMainMenuBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        btnPlay = findViewById(R.id.btn_play)
-        tvNameApp = findViewById(R.id.tv_name_app)
-
-        tvNameApp?.text = "Кто не хочет" + "\n" + "стать" + "\n" + "отчисленным"
-        btnPlay?.setOnClickListener {
+        binding.tvNameApp.text = "Кто не хочет" + "\n" + "стать" + "\n" + "отчисленным"
+        binding.btnPlay.setOnClickListener {
             val intent = Intent (this, PrepareActivity::class.java)
             startActivity(intent)
         }
