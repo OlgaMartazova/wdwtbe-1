@@ -94,12 +94,6 @@ class PlayActivity : AppCompatActivity(), OnClickListener {
         var question: Question? = QuestionRepository.questions.getValue(item)[Random().nextInt(3)]
         var type: Boolean? = question?.isExtra
 
-        //не нужно, потому что в item=1 нет вопросов с пометкой ДОП
-//        if (item == 1) {
-//            while (type == true) {
-//                question = QuestionRepository.questions.getValue(item)[Random().nextInt(3)]
-//            }
-//        }
         // Арсик использован - теперь все вопросы ДОП
         if (isHelpUsed[3]) {
             while (type == false) {
