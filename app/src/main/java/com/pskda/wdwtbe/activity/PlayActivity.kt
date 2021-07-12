@@ -52,12 +52,10 @@ class PlayActivity : AppCompatActivity(), OnClickListener {
         val view = binding.root
         setContentView(view)
 
-        with (binding) {
-            buttonsOfAnswer = listOf(btnAns1, btnAns2, btnAns3, btnAns4)
+            buttonsOfAnswer = listOf(binding.btnAns1, binding.btnAns2, binding.btnAns3, binding.btnAns4)
         buttonsOfAnswerId = listOf(R.id.btn_ans1, R.id.btn_ans2, R.id.btn_ans3, R.id.btn_ans4)
-        buttonsOfHelp = listOf(btnHelp1, btnHelp2, btnHelp3, btnHelp4)
+        buttonsOfHelp = listOf(binding.btnHelp1, binding.btnHelp2, binding.btnHelp3, binding.btnHelp4)
         buttonsOfHelpId = listOf(R.id.btn_help1, R.id.btn_help2, R.id.btn_help3, R.id.btn_help4)
-        }
 
         binding.btnAns1.setOnClickListener(this)
         binding.btnAns2.setOnClickListener(this)

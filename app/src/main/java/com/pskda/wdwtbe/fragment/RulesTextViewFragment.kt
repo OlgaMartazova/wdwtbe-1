@@ -50,27 +50,25 @@ class RulesTextViewFragment : Fragment() {
     }
 
     private fun initListeners() {
-        with (binding) {
-            imgBtnPrev.setOnClickListener {
-                imgBtnNext.visibility = VISIBLE
-                if (counter > 0 && counter < rulesStrings.size) {
-                    counter--
-                    tvRules.text = rulesStrings[counter]
-                }
-                if (counter == 0) {
-                    imgBtnPrev.visibility = INVISIBLE
-                }
+        binding.imgBtnPrev.setOnClickListener {
+            binding.imgBtnNext.visibility = VISIBLE
+            if (counter > 0 && counter < rulesStrings.size) {
+                counter--
+                binding.tvRules.text = rulesStrings[counter]
             }
+            if (counter == 0) {
+                binding.imgBtnPrev.visibility = INVISIBLE
+            }
+        }
 
-            imgBtnNext.setOnClickListener {
-                imgBtnPrev.visibility = VISIBLE
-                if (counter < rulesStrings.size - 1 && counter >= 0) {
-                    counter++
-                    tvRules.text = rulesStrings[counter]
-                }
-                if (counter == rulesStrings.size - 1) {
-                    imgBtnNext.visibility = INVISIBLE
-                }
+        binding.imgBtnNext.setOnClickListener {
+            binding.imgBtnPrev.visibility = VISIBLE
+            if (counter < rulesStrings.size - 1 && counter >= 0) {
+                counter++
+                binding.tvRules.text = rulesStrings[counter]
+            }
+            if (counter == rulesStrings.size - 1) {
+                binding.imgBtnNext.visibility = INVISIBLE
             }
         }
     }

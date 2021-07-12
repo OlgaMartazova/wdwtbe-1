@@ -27,24 +27,22 @@ class FinalActivity : AppCompatActivity() {
         }
 
         val result = intent.getIntExtra("Score", 0)
-        with (binding) {
-            when {
-                result > 85 -> {
-                    tvResult.text = "Ты получил $result/100. \nОтлично"
-                    tvText.text = "Вы справились с экзаменом.\nСоветую Вам поступать на мехМат"
-                }
-                result > 70 -> {
-                    tvResult.text = "Ты получил $result/100. \nХорошо"
-                    tvText.text = "Чепуху несёте.\nНатянул вам на четверку"
-                }
-                result > 55 -> {
-                    tvResult.text = "Ты получил $result/100. \nУдовлетворительно"
-                    tvText.text = "Чепуху несёте"
-                }
-                else -> {
-                    tvResult.text = "Ты получил $result/100. \nЭкзамен не сдан"
-                    tvText.text = "Молодой человек,\nвы ничего не знаете.\nВы отчислены"
-                }
+        when {
+            result > 85 -> {
+                binding.tvResult.text = "Ты получил $result/100. \nОтлично"
+                binding.tvText.text = "Вы справились с экзаменом.\nСоветую Вам поступать на мехМат"
+            }
+            result > 70 -> {
+                binding.tvResult.text = "Ты получил $result/100. \nХорошо"
+                binding.tvText.text = "Чепуху несёте.\nНатянул вам на четверку"
+            }
+            result > 55 -> {
+                binding.tvResult.text = "Ты получил $result/100. \nУдовлетворительно"
+                binding.tvText.text = "Чепуху несёте"
+            }
+            else -> {
+                binding.tvResult.text = "Ты получил $result/100. \nЭкзамен не сдан"
+                binding.tvText.text = "Молодой человек,\nвы ничего не знаете.\nВы отчислены"
             }
         }
     }

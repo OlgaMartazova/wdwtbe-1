@@ -51,62 +51,60 @@ class PrepareActivity : AppCompatActivity(), View.OnClickListener  {
     }
 
     override fun onClick(view: View?) {
-        with (binding) {
-            when (view?.id) {
-                btnDifficulty6.id -> {
-                    Log.d("KNOPKA", "Нажата кнопка выбора сложности 6")
+        when (view?.id) {
+            binding.btnDifficulty6.id -> {
+                Log.d("KNOPKA", "Нажата кнопка выбора сложности 6")
 
-                    if (!isDifficultyChosen) {
-                        difficultyScore = hardDifficulty
-                        isDifficultyChosen = true
-                    }
+                if (!isDifficultyChosen) {
+                    difficultyScore = hardDifficulty
+                    isDifficultyChosen = true
                 }
+            }
 
-                btnDifficulty1025.id -> {
-                    Log.d("KNOPKA", "Нажата кнопка выбора сложности 10 - 25")
-                    if (!isDifficultyChosen) {
-                        difficultyScore =
-                            Random.nextInt(from = difficulty10, until = difficulty25 + 1)
-                        isDifficultyChosen = true
-                    }
+            binding.btnDifficulty1025.id -> {
+                Log.d("KNOPKA", "Нажата кнопка выбора сложности 10 - 25")
+                if (!isDifficultyChosen) {
+                    difficultyScore =
+                        Random.nextInt(from = difficulty10, until = difficulty25 + 1)
+                    isDifficultyChosen = true
                 }
+            }
 
-                btnDifficulty2640.id -> {
-                    Log.d("KNOPKA", "Нажата кнопка выбора сложности 26 - 40")
-                    if (!isDifficultyChosen) {
-                        difficultyScore =
-                            Random.nextInt(from = difficulty25 + 1, until = difficulty40 + 1)
-                        isDifficultyChosen = true
-                    }
+            binding.btnDifficulty2640.id -> {
+                Log.d("KNOPKA", "Нажата кнопка выбора сложности 26 - 40")
+                if (!isDifficultyChosen) {
+                    difficultyScore =
+                        Random.nextInt(from = difficulty25 + 1, until = difficulty40 + 1)
+                    isDifficultyChosen = true
                 }
+            }
 
-                btnDifficulty4150.id -> {
-                    Log.d("KNOPKA", "Нажата кнопка выбора сложности 41 - 50")
-                    if (!isDifficultyChosen) {
-                        difficultyScore =
-                            Random.nextInt(from = difficulty40 + 1, until = difficulty50 + 1)
-                        isDifficultyChosen = true
-                    }
+            binding.btnDifficulty4150.id -> {
+                Log.d("KNOPKA", "Нажата кнопка выбора сложности 41 - 50")
+                if (!isDifficultyChosen) {
+                    difficultyScore =
+                        Random.nextInt(from = difficulty40 + 1, until = difficulty50 + 1)
+                    isDifficultyChosen = true
                 }
+            }
 
-                btnFiftyFifty.id -> {
-                    showDialog(getString(R.string._50_50), getString(R.string._50_50_descr))
-                }
+            binding.btnFiftyFifty.id -> {
+                showDialog(getString(R.string._50_50), getString(R.string._50_50_descr))
+            }
 
-                btnCheatNotes.id -> {
-                    showDialog(getString(R.string.cheat_note), getString(R.string.cheat_note_descr))
-                }
+            binding.btnCheatNotes.id -> {
+                showDialog(getString(R.string.cheat_note), getString(R.string.cheat_note_descr))
+            }
 
-                btnGroupmateHelp.id -> {
-                    showDialog(
-                        getString(R.string.groupmate_help),
-                        getString(R.string.groupmate_help_descr)
-                    )
-                }
+            binding.btnGroupmateHelp.id -> {
+                showDialog(
+                    getString(R.string.groupmate_help),
+                    getString(R.string.groupmate_help_descr)
+                )
+            }
 
-                btnArsiksHelp.id -> {
-                    showDialog(getString(R.string.ars_help), getString(R.string.ars_help_descr))
-                }
+            binding.btnArsiksHelp.id -> {
+                showDialog(getString(R.string.ars_help), getString(R.string.ars_help_descr))
             }
         }
 
